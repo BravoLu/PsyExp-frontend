@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Container,
   Box,
@@ -15,7 +15,6 @@ import {
   HStack,
   Text,
   Link,
-  useToast,
   ButtonGroup,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
