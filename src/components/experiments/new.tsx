@@ -98,6 +98,7 @@ const NewExperimentPage = () => {
         window.location.href = `/detail/${result.eid}`;
       })
       .catch((error) => {
+        setIsLoading(false);
         toast({
           title: "Experiment Create Failed.",
           description: "Please try again.",
@@ -128,8 +129,9 @@ const NewExperimentPage = () => {
   const handleEndTime = (value: Date) => {
     setExp((prevData) => ({
       ...prevData,
-      end_time: format(value, "yyyy-MM-dd HH:mm:ss"),
+      deadline: format(value, "yyyy-MM-dd HH:mm:ss"),
     }));
+    console.log("deadline: ", format(value, "yyyy-MM-dd HH:mm:ss"))
     setDeadline(value);
   };
 

@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import config from "../../config"
 
 export function getTimeGap(timestamp: string) {
   const currentTime = new Date().getTime();

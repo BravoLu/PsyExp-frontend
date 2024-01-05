@@ -12,7 +12,7 @@ export interface ExpInfo {
   pnum?: number;
   create_time?: string;
   update_time?: string;
-  deadline?: Date;
+  deadline?: string;
   snum?: number;
   rid?: string | null;
   state: string | number;

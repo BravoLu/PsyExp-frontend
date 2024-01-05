@@ -120,7 +120,7 @@ const UserProfile = () => {
   };
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(1, 1fr)">
+    <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(1, 1fr)" minH="800px">
       <GridItem rowSpan={1} colSpan={1}>
         <Card mt={20}>
           <CardBody>

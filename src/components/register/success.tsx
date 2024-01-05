@@ -6,6 +6,7 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
+import config from "../../config";
 
 const Success = () => {
   return (
@@ -25,7 +26,7 @@ const Success = () => {
         </AlertTitle>
         <AlertDescription maxWidth="sm">
            Click{" "}
-          <Link color="blue" href="http://localhost:5173/login">
+          <Link color="blue" href={`http://${config.apiUrl}/login`}>
             here
           </Link>{" "}
           to login.{" "}

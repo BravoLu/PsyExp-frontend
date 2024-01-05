@@ -27,8 +27,7 @@ const Registration = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(false);
   const [emailRegistered, setEmailRegistered] = useState(false);
-  const [submit, setSubmit] = useState(false);
-  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<RegisterReq>({
     user_info: {
       email: "",
@@ -74,7 +73,7 @@ const Registration = () => {
   const handleEmailPrecheck = async () => {
     if (formData.user_info.email !== undefined) {
       precheck(formData.user_info.email).then((rsp) => {
-        if (rsp.uid !== "-1") {
+        if (rsp.code === 0 && rsp.uid !== "-1") {
           setEmailRegistered(true);
         } else {
           setEmailRegistered(false);
@@ -128,34 +127,15 @@ const Registration = () => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    // const toast = useToast();
     e.preventDefault();
-    // Add your registration logic here
-    register(formData);
-    toast({
-      title: "Register Success.",
-      description: "Your account has been created.",
-      status: "success",
-      duration: 2000,
-      isClosable: true,
+    setIsLoading(true);
+    register(formData).then(() => {
+      window.location.href = "/registerSendEmailSuccess"
+    }).catch(() => {
+      window.location.href = "/registerSendEmailFailed"
     });
-    setSubmit(true);
+    setIsLoading(false);
   };
-
-  useEffect(() => {
-    const sleepAndRedirect = async () => {
-      // Sleep for 1 second (1000 milliseconds)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Change the window location after the sleep
-      window.location.href = "/login"; // Replace with your desired URL
-    };
-
-    // Call the sleepAndRedirect function
-    if (submit) {
-      sleepAndRedirect();
-    }
-  }, [submit]);
 
   return (
     <Container centerContent mb="5%">
@@ -191,6 +171,7 @@ const Registration = () => {
               onChange={handleChange}
               onBlur={handleEmailPrecheck}
               bgColor="white"
+              tabIndex={1}
             />
           </FormControl>
           {emailRegistered && (
@@ -207,6 +188,7 @@ const Registration = () => {
               value={formData.user_info.user_name}
               onChange={handleChange}
               bgColor="white"
+              tabIndex={2}
             />
           </FormControl>
           <FormControl id="gender" mb={4}>
@@ -214,6 +196,7 @@ const Registration = () => {
             <RadioGroup
               onChange={handleRadioChange}
               value={formData.user_info.gender}
+              tabIndex={3}
             >
               <Stack direction="row">
                 <Radio value="1" bgColor="white">
@@ -236,6 +219,7 @@ const Registration = () => {
               value={formData.password}
               onChange={handleChange}
               bgColor="white"
+              tabIndex={4}
             />
             {strength >= 1 && (
               <HStack mt={2}>
@@ -278,6 +262,7 @@ const Registration = () => {
               onChange={handleConfirmPasswordChange}
               onBlur={handleBlur}
               bgColor="white"
+              tabIndex={5}
             />
           </FormControl>
           {passwordMatchError && (
@@ -287,7 +272,7 @@ const Registration = () => {
             </Alert>
           )}
           <Box textAlign="center">
-            <Button type="submit" colorScheme="orange">
+            <Button type="submit" colorScheme="orange" isLoading={isLoading}>
               Register
             </Button>
           </Box>

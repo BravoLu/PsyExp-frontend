@@ -25,7 +25,18 @@ import ManageExperiment from "./components/experiments/manage";
 import YourParticipation from "./components/participation/query";
 
 function App() {
-  //
+  const registerSendEmailSuccess: Props = {
+    status: "success",
+    title: "register email has been sent.",
+    desc: "please verify your registration in your email",
+  };
+
+  const registerSendEmailFailed: Props = {
+    status: "error",
+    title: "register failed",
+    desc: "please try again",
+  };
+
   const resetPasswordsuccess: Props = {
     status: "success",
     title: "Reset Password Success!",
@@ -55,6 +66,14 @@ function App() {
             <Route
               path="/resetPasswordsuccess"
               element={<AlertResult {...resetPasswordsuccess} />}
+            />
+            <Route
+              path="/registerSendEmailSuccess"
+              element={<AlertResult {...registerSendEmailSuccess} />}
+            />
+            <Route
+              path="/registerSendEmailFailed"
+              element={<AlertResult {...registerSendEmailFailed} />}
             />
             <Route path="/edit/:id" element={<UpdateExperimentPage />} />
             <Route path="/manage/:id" element={<ManageExperiment />} />
