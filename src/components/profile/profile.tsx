@@ -71,10 +71,10 @@ const UserProfile = () => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { value } = e.target;
+    const { name, value } = e.target;
     setUser((prevData) => ({
       ...prevData,
-      extra: value,
+      [name]: value,
     }));
   };
 

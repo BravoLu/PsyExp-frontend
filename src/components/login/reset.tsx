@@ -102,6 +102,7 @@ const ResetPassword = () => {
                 onChange={handlePasswordChange}
                 bgColor="white"
                 required
+                tabIndex={1}
               />
               {strength >= 1 && (
                 <HStack mt={2}>
@@ -146,6 +147,7 @@ const ResetPassword = () => {
                 onBlur={handleBlur}
                 bgColor="white"
                 required
+                tabIndex={2}
               />
             </FormControl>
 
