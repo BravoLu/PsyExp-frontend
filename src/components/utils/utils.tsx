@@ -81,7 +81,7 @@ export const precheck = (email: string): Promise<precheckRsp> => {
         email: email,
       };
       const resp: AxiosResponse<precheckRsp> = await axios.post(
-        "http://localhost:8080/exist",
+        `http://${config.apiUrl}/exist`,
         data,
         {
           withCredentials: true,

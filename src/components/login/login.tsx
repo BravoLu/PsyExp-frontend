@@ -26,6 +26,7 @@ import { useAuth } from "../context";
 import { useNavigate } from "react-router-dom";
 import { LogoIcon } from "../utils/icons";
 import GoogleLoginButton from "./google";
+import config from "../../config";
 
 interface LoginReq {
   email: string;
@@ -34,7 +35,7 @@ interface LoginReq {
 
 const login = async (data: LoginReq): Promise<boolean> => {
   try {
-    const resp = await axios.post("http://localhost:8080/login", data, {
+    const resp = await axios.post(`http://${config.apiUrl}/login`, data, {
       withCredentials: true,
     });
     if (resp.data.code !== 0) {

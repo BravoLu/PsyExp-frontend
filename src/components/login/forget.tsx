@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { precheck } from "../utils/utils";
+import config from "../../config";
 
 const resetPassword = async (email: string, uid: number) => {
   return new Promise((resolve, reject) => {
@@ -21,7 +22,7 @@ const resetPassword = async (email: string, uid: number) => {
         email: email,
         uid: uid,
       };
-      const rsp = axios.post(`http://localhost:8080/forget`, data, {
+      const rsp = axios.post(`http://${config.apiUrl}/forget`, data, {
         withCredentials: true,
       });
       resolve(rsp);

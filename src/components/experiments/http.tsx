@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { ExpInfo, SubInfo, ExpStats } from "./entity";
+import config from "../../config";
 
 interface queryExpRsp {
   code: number;
@@ -18,7 +19,7 @@ export const queryExp = (eid: string): Promise<queryExpRsp> => {
         eid: Number(eid),
       };
       const resp: AxiosResponse<queryExpRsp> = await axios.post(
-        "http://localhost:8080/queryExp",
+        `http://${config.apiUrl}/queryExp`,
         data,
         {
           withCredentials: true,
@@ -44,7 +45,7 @@ export const addSub = (eid: string): Promise<addSubRsp> => {
         pid: localStorage.getItem("uid"),
       };
       const resp: AxiosResponse<addSubRsp> = await axios.post(
-        "http://localhost:8080/addSub",
+        `http://${config.apiUrl}/addSub`,
         data,
         {
           withCredentials: true,
@@ -66,7 +67,7 @@ export const updateExp = (exp: ExpInfo): Promise<number> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<updateExpRsp> = await axios.post(
-        "http://localhost:8080/updateExp",
+        `http://${config.apiUrl}/updateExp`,
         exp,
         {
           withCredentials: true,
@@ -88,7 +89,7 @@ export const querySub = (sub: SubInfo): Promise<querySubRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<querySubRsp> = await axios.post(
-        "http://localhost:8080/querySub",
+        `http://${config.apiUrl}/querySub`,
         sub,
         {
           withCredentials: true,
@@ -111,7 +112,7 @@ export const addExp = (data: ExpInfo): Promise<addExpRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<addExpRsp> = await axios.post(
-        "http://localhost:8080/addExp",
+        `http://${config.apiUrl}/addExp`,
         data,
         {
           withCredentials: true,
@@ -145,7 +146,7 @@ export const queryExps = (data: queryExpsReq): Promise<queryExpsRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<queryExpsRsp> = await axios.post(
-        "http://localhost:8080/queryExps",
+        `http://${config.apiUrl}/queryExps`,
         data,
         {
           withCredentials: true,
@@ -165,7 +166,7 @@ export const updateSub = (sid: string, state: number) => {
         sid: sid,
         state: state,
       };
-      const resp = axios.post("http://localhost:8080/updateSub", data, {
+      const resp = axios.post(`http://${config.apiUrl}/updateSub`, data, {
         withCredentials: true,
       });
       resolve(resp);

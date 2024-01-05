@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { User } from "../user/user";
+import config from "../../config";
 
 interface updateUserReq {
   extra?: string;
@@ -15,7 +16,7 @@ export const updateUser = (req: updateUserReq): Promise<updateUserRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<updateUserRsp> = await axios.post(
-        "http://localhost:8080/updateUser",
+        `http://${config.apiUrl}/updateUser`,
         req,
         {
           withCredentials: true,
@@ -32,7 +33,7 @@ export const profile = (): Promise<User> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<User> = await axios.get(
-        `http://localhost:8080/myprofile`,
+        `http://${config.apiUrl}/myprofile`,
         {
           withCredentials: true,
         }
@@ -48,7 +49,7 @@ export const getUser = (uid: string): Promise<User> => {
   return new Promise(async (resolve, reject) => {
     try {
       const resp: AxiosResponse<User> = await axios.post(
-        `http://localhost:8080/user`,
+        `http://${config.apiUrl}/user`,
         {
           uid: Number(uid),
         },
@@ -89,7 +90,7 @@ export const register = (data: RegisterReq): Promise<RegisterRsp> => {
         password: data.password,
       };
       const resp: AxiosResponse<RegisterRsp> = await axios.post(
-        "http://localhost:8080/register",
+        `http://${config.apiUrl}/register`,
         body,
         {
           headers: headers,
@@ -113,7 +114,7 @@ export const queryUsers = (uids: number[]): Promise<QueryUsersRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const rsp: AxiosResponse<QueryUsersRsp> = await axios.post(
-        "http://localhost:8080/queryUsers",
+        `http://${config.apiUrl}/queryUsers`,
         { uids: uids },
         { withCredentials: true }
       );

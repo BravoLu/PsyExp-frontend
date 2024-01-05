@@ -23,10 +23,11 @@ import axios from "axios";
 import { useAuth } from "../context";
 import useUser from "../user/useUser";
 import { useEffect } from "react";
+import config from "../../config";
 
 const logout = async () => {
   try {
-    const resp = await axios.get("http://localhost:8080/logout");
+    const resp = await axios.get(`http://${config.apiUrl}/logout`);
     console.log("logout response: ", resp);
   } catch (error) {
     console.log("logout error: ", error);

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { SubInfo } from "../experiments/entity";
+import config from "../../config";
 
 interface Props {
   pid: number;
@@ -17,7 +18,7 @@ export const querySubs = (props: Props): Promise<querySubsRsp> => {
   return new Promise(async (resolve, reject) => {
     try {
       const rsp: AxiosResponse<querySubsRsp> = await axios.post(
-        "http://localhost:8080/querySubs",
+        `http://${config.apiUrl}/querySubs`,
         props,
         {
           withCredentials: true,

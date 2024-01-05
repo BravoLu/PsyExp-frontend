@@ -16,12 +16,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { checkPasswordStrength, getProgressBarColor } from "../utils/utils";
+import config from "../../config";
 
 const resetPassword = async (token: string, password: string) => {
   return new Promise((resolve, reject) => {
     try {
       const rsp = axios.post(
-        `http://localhost:8080/reset/${token}`,
+        `http://${config.apiUrl}/reset/${token}`,
         { password: password },
         { withCredentials: true }
       );
