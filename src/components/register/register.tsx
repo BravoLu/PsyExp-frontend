@@ -32,7 +32,7 @@ const Registration = () => {
       email: "",
       phone_number: "",
       user_name: "",
-      gender: "3",
+      gender: "0",
     },
     password: "",
   });
@@ -137,7 +137,7 @@ const Registration = () => {
   };
 
   return (
-    <Container centerContent mb="5%">
+    <Container centerContent mb="5%" minH="900px">
       <Heading mt={20} textAlign="center">
         Register
       </Heading>
@@ -203,9 +203,6 @@ const Registration = () => {
                 </Radio>
                 <Radio value="2" bgColor="white">
                   Female
-                </Radio>
-                <Radio value="3" bgColor="white">
-                  Unknown
                 </Radio>
               </Stack>
             </RadioGroup>

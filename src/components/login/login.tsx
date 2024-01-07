@@ -101,11 +101,11 @@ const Login = () => {
       shadow="lg"
     >
       <VStack width="100%" spacing={5}>
-        <LogoIcon style={{ width: "4%", height: "4%" }} />
+        <LogoIcon style={{ width: "10%", height: "10%" }} />
         <Heading fontSize={30}>Sign in to Brain</Heading>
         <Card
-          width="30%"
-          height="50%"
+          width={{base: "80%", lg: "30%"}}
+          height={{base: "80%", lg: "50%"}}
           justifyContent="center"
           bgColor="gray.100"
         >

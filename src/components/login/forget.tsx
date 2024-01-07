@@ -65,8 +65,8 @@ const ForgotPassword = () => {
         <Heading mb={6}>Forgot Password</Heading>
         <Card
           p={5}
-          width="30%"
-          height="50%"
+          width={{base: "80%", lg: "30%"}}
+          height={{base: "80%", lg: "50%"}}
           alignItems="center"
           bgColor="gray.100"
         >
