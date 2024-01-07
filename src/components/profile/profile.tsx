@@ -22,7 +22,7 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   HStack,
-  Grid,
+  SimpleGrid,
   GridItem,
   Tabs,
   TabList,
@@ -35,6 +35,7 @@ import {
   AccordionPanel,
   Circle,
   useToast,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import Pagination from "../utils/pagination";
@@ -54,6 +55,8 @@ const UserProfile = () => {
   const handleTabClick = (tab: string) => {
     setState(tab);
   };
+
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const cancelRef = useRef<null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -120,9 +123,9 @@ const UserProfile = () => {
   };
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(1, 1fr)" minH="800px">
+    <SimpleGrid columns={1} row={2} minH="800px">
       <GridItem rowSpan={1} colSpan={1}>
-        <Card mt={20}>
+        <Card m={4} mt={{base: 20 }} >
           <CardBody>
             <form onSubmit={handleUpdateSubmit}>
               <Flex align="center">
@@ -157,6 +160,7 @@ const UserProfile = () => {
                   <FormLabel>Bio:</FormLabel>
                   <Textarea
                     height="200px"
+                    name="extra"
                     onChange={handleInputChange}
                     value={user.extra}
                   />
@@ -204,41 +208,41 @@ const UserProfile = () => {
         </Card>
       </GridItem>
       <GridItem rowSpan={1} colSpan={1}>
-        <Card m={4} mt={20}>
-          <Tabs>
+        <Card m={{ lg: 4 }}>
+          <Tabs variant="soft-rounded" colorScheme="orange">
             <TabList>
               <Tab onClick={() => handleTabClick("0")}>
                 <StateIcon state="STATE_SUB_INVALID" />
-                All
+                {isLargerThan768 && "All"}
                 <HStack>
-                  <Circle bg="gray.200" size="30px" ml={2}>
+                  <Circle bg="gray.200" size="30px" ml={{lg: 2}}>
                     <Text color="black">{stats.all_num}</Text>
                   </Circle>
                 </HStack>
               </Tab>
               <Tab onClick={() => handleTabClick("1")}>
                 <StateIcon state="STATE_EXP_PUBLISHED" />
-                Running
+                {isLargerThan768 && "Running"}
                 <HStack>
-                  <Circle bg="gray.200" size="30px" ml={2}>
+                  <Circle bg="gray.200" size="30px" ml={{lg: 2}}>
                     <Text color="black">{stats.ongoing_num}</Text>
                   </Circle>
                 </HStack>
               </Tab>
               <Tab onClick={() => handleTabClick("2")}>
                 <StateIcon state="STATE_EXP_FINISHED" />
-                Finished
+                {isLargerThan768 && "Finished"}
                 <HStack>
-                  <Circle bg="gray.200" size="30px" ml={2}>
+                  <Circle bg="gray.200" size="30px" ml={{lg: 2}}>
                     <Text color="black">{stats.finished_num}</Text>
                   </Circle>
                 </HStack>
               </Tab>
               <Tab onClick={() => handleTabClick("3")}>
                 <StateIcon state="STATE_EXP_DELETED" />
-                Closed
+                {isLargerThan768 && "Closed"}
                 <HStack>
-                  <Circle bg="gray.200" size="30px" ml={2}>
+                  <Circle bg="gray.200" size="30px" ml={{lg: 2}}>
                     <Text color="black">{stats.closed_num}</Text>
                   </Circle>
                 </HStack>
@@ -286,7 +290,7 @@ const UserProfile = () => {
           />
         </Card>
       </GridItem>
-    </Grid>
+    </SimpleGrid>
   );
 };
 

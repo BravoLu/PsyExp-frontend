@@ -12,8 +12,8 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <SimpleGrid columns={2}>
-      <Center>
+    <SimpleGrid columns={{base: 1, sm: 1, md: 2, lg: 2}}>
+      <Center m={20}>
         <VStack>
           <Text fontSize="6xl" as="b">
             Join

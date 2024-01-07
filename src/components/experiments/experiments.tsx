@@ -13,7 +13,9 @@ import {
   CardBody,
   CircularProgress,
   CircularProgressLabel,
-  Grid,
+  CardHeader,
+  HStack,
+  Center,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { EditIcon } from "@chakra-ui/icons";
@@ -89,58 +91,56 @@ const Experiments = () => {
   };
 
   return (
-    <Box m={{ base: 10, sm: 5, md: 10, lg: 20 }}>
+    <Box m={{ base: 10, sm: 10, md: 10, lg: 10 }}>
       {/* <Dirs />  */}
-      <Flex mb={5}>
-        <Card width="100%">
+      <Box mb={10}>
+        <Card width="100%" mt={20}>
+          <CardHeader>
+            <Heading>Dashboard</Heading>
+          </CardHeader>
           <CardBody>
-            <Grid
-              templateRows="repeat(2, 1fr)"
-              templateColumns="repeat(5, 1fr)"
-            >
-              <GridItem rowSpan={1} colSpan={4}>
-                <Heading>Dashboard</Heading>
-                {/* <Text>Dashboard</Text> */}
-              </GridItem>
-              <GridItem rowSpan={2} colSpan={1}>
-                <CircularProgress
-                  value={(stats.finished_num / stats.all_num) * 100}
-                  color="green.400"
-                  // size=""
-                  size="xs"
-                >
-                  <CircularProgressLabel fontSize="lg">{`${stats.finished_num} / ${stats.all_num}`}</CircularProgressLabel>
-                </CircularProgress>
-              </GridItem>
+            <SimpleGrid columns={{ sm: 1, lg: 2 }} row={{ sm: 2, lg: 1 }}>
               <GridItem rowSpan={1} colSpan={1}>
-                <Stat>
-                  <StatLabel>All:</StatLabel>
-                  <StatNumber>{stats.all_num}</StatNumber>
-                </Stat>
+                <HStack m={10}>
+                  <Stat>
+                    <StatLabel>All:</StatLabel>
+                    <StatNumber>{stats.all_num}</StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>Running:</StatLabel>
+                    <StatNumber>{stats.ongoing_num}</StatNumber>
+                  </Stat>
+                </HStack>
+                <HStack m={10}>
+                  <Stat>
+                    <StatLabel>Finished:</StatLabel>
+                    <StatNumber>{stats.finished_num}</StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>Closed:</StatLabel>
+                    <StatNumber>{stats.closed_num}</StatNumber>
+                  </Stat>
+                </HStack>
               </GridItem>
+
               <GridItem rowSpan={1} colSpan={1}>
-                <Stat>
-                  <StatLabel>Running:</StatLabel>
-                  <StatNumber>{stats.ongoing_num}</StatNumber>
-                </Stat>
+                <Center>
+                  <CircularProgress
+                    value={(stats.finished_num / stats.all_num) * 100}
+                    color="green.400"
+                    // size=""
+                    size="xs"
+                  >
+                    <CircularProgressLabel fontSize="lg">{`${stats.finished_num} / ${stats.all_num}`}</CircularProgressLabel>
+                  </CircularProgress>
+                </Center>
               </GridItem>
-              <GridItem rowSpan={1} colSpan={1}>
-                <Stat>
-                  <StatLabel>Finished:</StatLabel>
-                  <StatNumber>{stats.finished_num}</StatNumber>
-                </Stat>
-              </GridItem>
-              <GridItem rowSpan={1} colSpan={1}>
-                <Stat>
-                  <StatLabel>Closed:</StatLabel>
-                  <StatNumber>{stats.closed_num}</StatNumber>
-                </Stat>
-              </GridItem>
-            </Grid>
+            </SimpleGrid>
           </CardBody>
         </Card>
         <Spacer />
-      </Flex>
+      </Box>
+
       <Flex mb={4}>
         <CustomMenu {...selectState} />
         <Spacer />

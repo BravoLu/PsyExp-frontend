@@ -23,6 +23,7 @@ import {
   Select,
   useDisclosure,
   Divider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import {
@@ -56,6 +57,8 @@ const MyExp = () => {
   } = useExps();
 
   const { setUid } = useUser();
+
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const [selectedId, setSelectedId] = useState("");
 
@@ -110,7 +113,7 @@ const MyExp = () => {
   };
 
   return (
-    <Box mt={10} minH="810px">
+    <Box mt={{ base: 20, lg: 10 }} minH="810px">
       <Grid
         templateColumns="repeat(5, 1fr)"
         templateRows="repeat(1, 12, 1fr)"
@@ -139,10 +142,13 @@ const MyExp = () => {
                 <option value="4">Closed</option>
               </Select>
             </HStack>
-            <HStack>
-              <Text>Title:</Text>
-              <SearchBar />
-            </HStack>
+            {isLargerThan768 && (
+              <HStack>
+                <Text>Title:</Text>
+                <SearchBar />
+              </HStack>
+            )}
+            {!isLargerThan768 && <HStack></HStack>}
             <HStack></HStack>
             <Flex>
               <Spacer />
@@ -153,7 +159,7 @@ const MyExp = () => {
                 as={ReactRouterLink}
                 to="/newExp"
               >
-                New
+                {isLargerThan768 && "New"}
               </Button>
             </Flex>
           </SimpleGrid>

@@ -5,6 +5,7 @@ import {
   HStack,
   Text,
   Button,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link as ReactRouterLink } from "react-router-dom";
@@ -15,6 +16,7 @@ import { LogoIcon } from "./icons";
 
 const NavBar = () => {
   const { isLogin } = useAuth();
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   return (
     <Flex
@@ -54,7 +56,7 @@ const NavBar = () => {
         direction={{ base: "column", md: "row" }}
         alignItems={{ base: "stretch", md: "center" }}
       >
-        <SearchBar />
+        {isLargerThan768 && <SearchBar />}
         {isLogin && <UserDrawer />}
         {!isLogin && (
           <HStack mr={2}>

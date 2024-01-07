@@ -41,7 +41,6 @@ const UserDrawer = () => {
   const handleLogoutClick = () => {
     logout();
     localStorage.removeItem("uid");
-    console.log("logout success, uid: ", localStorage.getItem("uid"));
     onClose();
     window.location.href = `/home/`;
   };
@@ -106,17 +105,6 @@ const UserDrawer = () => {
                   onClick={onClose}
                 >
                   Your Participation
-                </Button>
-              </ListItem>
-              <ListItem>
-                <Button
-                  width="80%"
-                  bgColor="white"
-                  leftIcon={AiOutlineUser}
-                  as={ReactRouterLink}
-                  to="/tbd"
-                >
-                  Settings
                 </Button>
               </ListItem>
             </List>

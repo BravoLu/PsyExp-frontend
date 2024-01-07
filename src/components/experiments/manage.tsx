@@ -134,7 +134,7 @@ const ManageExperiment = () => {
   }, [id, rerender]);
 
   return (
-    <Box mt={20} mb={20} minH="810px">
+    <Box mt={20} mb={20} minH="1200px">
       <Button
         variant="outline"
         colorScheme="orange"

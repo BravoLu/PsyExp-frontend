@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && rsync -au --delete dist/ /usr/share/nginx/html/PsyExp/",
+    "build": "tsc && vite build",
+    "deploy": "tsc && vite build && rsync -au --delete dist/ /usr/share/nginx/html/PsyExp/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
